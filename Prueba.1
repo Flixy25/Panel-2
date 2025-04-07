@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Estilo Netflix y Disney</title>
+    <!-- Agregar Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #141414;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #141414;
+            padding: 10px 0;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.7);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        nav.menu ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        nav.menu ul li {
+            margin: 0 10px;
+        }
+
+        nav.menu ul li a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav.menu ul li a i {
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto 3D */
+        nav.menu ul li a:hover i {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Contenedor del iframe */
+        .iframe-container {
+            flex: 1; /* Hace que ocupe el espacio disponible restante */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #222222;
+            height: 100%; /* Asegura que el contenedor ocupe todo el alto disponible */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%; /* Hace que el iframe ocupe todo el espacio disponible dentro de su contenedor */
+            border: none;
+        }
+
+        /* Media Query para pantallas móviles */
+        @media (max-width: 600px) {
+            nav.menu ul {
+                justify-content: space-between;
+            }
+
+            nav.menu ul li a {
+                width: 35px;
+                height: 35px;
+            }
+
+            nav.menu ul li a i {
+                font-size: 18px;
+            }
+
+            .iframe-container {
+                height: calc(100vh - 60px); /* En móviles, aseguramos que ocupe el espacio restante */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <ul>
+                <!-- Enlaces con onClick que llaman a la función loadPage() -->
+                <li><a href="javascript:void(0);" onclick="loadPage('https://www.disneyplus.com')"><i class="fas fa-tv"></i></a></li> <!-- Series -->
+                <li><a href="javascript:void(0);" onclick="loadPage('https://www.netflix.com')"><i class="fas fa-film"></i></a></li> <!-- Películas -->
+                <li><a href="javascript:void(0);" onclick="loadPage('https://www.youtube.com')"><i class="fas fa-home"></i></a></li> <!-- Inicio -->
+                <li><a href="javascript:void(0);" onclick="loadPage('https://www.cinepolis.com')"><i class="fas fa-video"></i></a></li> <!-- Tv -->
+                <li><a href="javascript:void(0);" onclick="loadPage('https://www.hbo.com')"><i class="fas fa-ellipsis-h"></i></a></li> <!-- Más -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenedor para el iframe donde se cargará el contenido -->
+    <div class="iframe-container" id="iframe-container">
+        <!-- Este iframe se carga inicialmente con el contenido de la opción Inicio -->
+        <iframe id="iframe-content" src="https://www.youtube.com"></iframe>
+    </div>
+
+    <script>
+        // Función para cargar una página web en el iframe
+        function loadPage(url) {
+            var iframe = document.getElementById("iframe-content");
+            iframe.src = url;  // Cambia la fuente del iframe al URL deseado
+        }
+
+        // Cargar "Inicio" al cargar la página
+        window.onload = function() {
+            loadPage("https://www.youtube.com"); // Cargar automáticamente la página de "Inicio"
+        };
+    </script>
+</body>
+</html>
